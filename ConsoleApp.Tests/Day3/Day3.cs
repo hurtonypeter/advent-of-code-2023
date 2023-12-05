@@ -1,6 +1,6 @@
 using ConsoleApp.Day3;
 
-namespace ConsoleApp.Tests;
+namespace ConsoleApp.Tests.Day3;
 
 public class Day3
 {

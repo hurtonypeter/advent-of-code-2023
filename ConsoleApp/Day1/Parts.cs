@@ -59,7 +59,7 @@ public static class Parts
                     {
                         for (var index = 0; index < digits.Length; index++)
                         {
-                            if (str.EndsWith(digits[index]))
+                            if (str.EndsWith(digits[index], StringComparison.InvariantCulture))
                             {
                                 return index;
                             }
