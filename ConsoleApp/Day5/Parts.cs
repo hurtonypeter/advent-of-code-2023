@@ -4,16 +4,16 @@ namespace ConsoleApp.Day5;
 
 public static class Parts
 {
-    public record struct Range(ulong Start, ulong Length);
+    public record struct Range(long Start, long Length);
 
-    private static (ulong From, ulong To) ToInterval(Range range)
+    private static (long From, long To) ToInterval(Range range)
     {
         return (range.Start, range.Start + range.Length - 1);
     }
 
     public record struct GardenMapEntry(Range Destination, Range Source);
 
-    private static (List<ulong> Seeds, List<List<GardenMapEntry>> Maps) ParseInput(string fileName)
+    private static (List<long> Seeds, List<List<GardenMapEntry>> Maps) ParseInput(string fileName)
     {
         var blocks = File.ReadAllText(fileName)
             .Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
@@ -22,7 +22,7 @@ public static class Parts
         var seeds = blocks[0]
             .Split(':')[1]
             .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-            .Select(ulong.Parse)
+            .Select(long.Parse)
             .ToList();
 
         var maps = new List<List<GardenMapEntry>>();
@@ -33,7 +33,7 @@ public static class Parts
             var map = new List<GardenMapEntry>();
             for (var j = 1; j < lines.Length; j++)
             {
-                var numbers = lines[j].Split(' ').Select(ulong.Parse).ToList();
+                var numbers = lines[j].Split(' ').Select(long.Parse).ToList();
 
                 map.Add(new GardenMapEntry(
                     new Range(numbers[0], numbers[2]),
@@ -46,7 +46,7 @@ public static class Parts
         return (seeds, maps);
     }
 
-    private static bool IsInRange(ulong value, Range range)
+    private static bool IsInRange(long value, Range range)
     {
         return value >= range.Start && value < range.Start + range.Length;
     }
@@ -64,11 +64,11 @@ public static class Parts
         return null;
     }
 
-    public static ulong One(string fileName = "Day5/input.txt")
+    public static long One(string fileName = "Day5/input.txt")
     {
         var (seeds, maps) = ParseInput(fileName);
 
-        var minTarget = ulong.MaxValue;
+        var minTarget = long.MaxValue;
         foreach (var seed in seeds)
         {
             var targetId = seed;
@@ -94,7 +94,7 @@ public static class Parts
         return minTarget;
     }
 
-    public static ulong TwoBruteForce(string fileName = "Day5/input.txt")
+    public static long TwoBruteForce(string fileName = "Day5/input.txt")
     {
         var timer = new Stopwatch();
         timer.Start();
@@ -106,7 +106,7 @@ public static class Parts
             .Select(x => new Range(x[0], x[1]))
             .ToList();
 
-        var minTarget = ulong.MaxValue;
+        var minTarget = long.MaxValue;
         foreach (var range in seedRanges)
         {
             for (var i = range.Start; i < range.Start + range.Length; i++)
@@ -145,7 +145,7 @@ public static class Parts
         return minTarget;
     }
 
-    public static ulong Two(string fileName = "Day5/input.txt")
+    public static long Two(string fileName = "Day5/input.txt")
     {
         var (seeds, maps) = ParseInput(fileName);
 
@@ -153,60 +153,61 @@ public static class Parts
             .Chunk(2)
             .Select(x => new Range(x[0], x[1]))
             .ToList();
-
-        var minTarget = ulong.MaxValue;
-        foreach (var seedRange in seedRanges)
+        
+        var targets = new List<Range>(seedRanges);
+        foreach (var map in maps)
         {
-            var targets = new List<Range>(new[] {seedRange});
-
-            foreach (var map in maps)
+            var newTargets = new List<Range>();
+            
+            foreach (var target in targets)
             {
-                var newTargets = new List<Range>();
-                foreach (var target in targets)
+                Range? intersection = null;
+                GardenMapEntry? mapItem = null;
+                foreach (var entry in map)
                 {
-                    foreach (var entry in map)
+                    intersection = GetIntersection(target, entry.Source);
+
+                    if (intersection != null)
                     {
-                        var intersection = GetIntersection(target, entry.Source);
-
-                        if (intersection == null)
-                        {
-                            if (!newTargets.Contains(target))
-                            {
-                                newTargets.Add(target);
-                            }
-
-                            continue;
-                        }
-
-                        ChunkIntervalByIntersection(newTargets, intersection.Value, target, entry);
+                        mapItem = entry;
+                        break;
                     }
                 }
 
-                if (newTargets.Count > 0)
+                if (intersection != null)
                 {
-                    targets = new List<Range>(newTargets);
+                    newTargets.AddRange(
+                        ChunkAndMapIntervalByIntersection(
+                            intersection.Value, target, mapItem!.Value));
+                }
+                else
+                {
+                    newTargets.Add(target);
                 }
             }
-
-            var min = targets.MinBy(x => x.Start).Start;
-            minTarget = minTarget > min ? min : minTarget;
+            
+            targets = new List<Range>(newTargets);
         }
+        
+        var minTarget = targets.MinBy(x => x.Start).Start;
 
         Console.WriteLine("Day 5 Task 2 answer is: " + minTarget);
 
         return minTarget;
     }
 
-    public static void ChunkIntervalByIntersection(
-        ICollection<Range> newTargets,
+    public static IList<Range> ChunkAndMapIntervalByIntersection(
         Range intersection,
         Range target,
         GardenMapEntry entry)
     {
-        newTargets.Add(intersection with
+        var newTargets = new List<Range>
         {
-            Start = intersection.Start - (entry.Source.Start - entry.Destination.Start)
-        });
+            intersection with
+            {
+                Start = intersection.Start - (entry.Source.Start - entry.Destination.Start)
+            }
+        };
 
         if (target.Start < intersection.Start)
         {
@@ -218,5 +219,7 @@ public static class Parts
             newTargets.Add(new Range(intersection.Start + intersection.Length,
                 target.Start + target.Length - (intersection.Start + intersection.Length)));
         }
+
+        return newTargets;
     }
 }
