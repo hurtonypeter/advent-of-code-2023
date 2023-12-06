@@ -21,9 +21,9 @@ public static partial class Parts
 
     private record struct Draw(int Red, int Green, int Blue);
 
-    private static List<Game> ParseGames()
+    private static List<Game> ParseGames(string fileName)
     {
-        var lines = File.ReadAllLines("Day2/input.txt");
+        var lines = File.ReadAllLines(fileName);
 
         return lines.Select(line =>
         {
@@ -53,25 +53,29 @@ public static partial class Parts
         }
     }
 
-    public static void One()
+    public static int One(string fileName = "Day2/input.txt")
     {
         const int reds = 12;
         const int greens = 13;
         const int blues = 14;
 
-        var games = ParseGames();
+        var games = ParseGames(fileName);
 
         var possibleGames = games
             .Where(x =>
                 x.Draws.All(d => d is {Red: <= reds, Green: <= greens, Blue: <= blues}))
             .ToList();
 
-        Console.WriteLine("Day 2 Task 1 answer is: " + possibleGames.Sum(x => x.Id));
+        var sum = possibleGames.Sum(x => x.Id);
+        
+        Console.WriteLine("Day 2 Task 1 answer is: " + sum);
+
+        return sum;
     }
 
-    public static void Two()
+    public static int Two(string fileName = "Day2/input.txt")
     {
-        var games = ParseGames();
+        var games = ParseGames(fileName);
 
         var sum = 0;
 
@@ -85,5 +89,7 @@ public static partial class Parts
         }
         
         Console.WriteLine("Day 2 Task 2 answer is: " + sum);
+
+        return sum;
     }
 }

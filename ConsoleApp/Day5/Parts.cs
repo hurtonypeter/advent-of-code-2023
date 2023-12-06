@@ -122,7 +122,7 @@ public static class Parts
                         mapItem = maps[j][k];
                         break;
                     }
-                
+
                     if (mapItem != null)
                     {
                         targetId = mapItem.Value.Destination.Start + (targetId - mapItem.Value.Source.Start);
@@ -134,10 +134,10 @@ public static class Parts
                     minTarget = targetId;
                 }
             }
-            
+
             Console.WriteLine($"Range done from: {range.Start} to: {range.Start + range.Length}");
         }
-        
+
         timer.Stop();
         Console.WriteLine(
             $@"Day 5 Task 1 answer is: {minTarget}, took {timer.Elapsed:m\:ss\.fff}");
@@ -170,7 +170,11 @@ public static class Parts
 
                         if (intersection == null)
                         {
-                            newTargets.Add(target);
+                            if (!newTargets.Contains(target))
+                            {
+                                newTargets.Add(target);
+                            }
+
                             continue;
                         }
 

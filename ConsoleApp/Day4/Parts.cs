@@ -4,9 +4,9 @@ public static class Parts
 {
     private record struct Card(List<int> WinningNumbers, List<int> OwnedNumbers);
 
-    private static IEnumerable<Card> ParseCards()
+    private static IEnumerable<Card> ParseCards(string fileName)
     {
-        var lines = File.ReadAllLines("Day4/input.txt");
+        var lines = File.ReadAllLines(fileName);
 
         foreach (var line in lines)
         {
@@ -44,9 +44,9 @@ public static class Parts
         return sum;
     }
 
-    public static void One()
+    public static int One(string fileName = "Day4/input.txt")
     {
-        var cards = ParseCards().ToList();
+        var cards = ParseCards(fileName).ToList();
 
         var points = cards.Aggregate(0, (acc, card) =>
         {
@@ -55,14 +55,18 @@ public static class Parts
         });
 
         Console.WriteLine("Day 4 Task 1 answer is: " + points);
+
+        return points;
     }
 
-    public static void Two()
+    public static int Two(string fileName = "Day4/input.txt")
     {
-        var cards = ParseCards().ToList();
+        var cards = ParseCards(fileName).ToList();
 
         var totalCards = cards.Count + cards.Select((_, i) => ProcessCard(i, cards)).Sum();
 
         Console.WriteLine("Day 4 Task 2 answer is: " + totalCards);
+
+        return totalCards;
     }
 }

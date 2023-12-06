@@ -2,9 +2,9 @@
 
 public static class Parts
 {
-    public static void One()
+    public static int One(string fileName = "Day1/input.txt")
     {
-        var lines = File.ReadAllLines("Day1/input.txt");
+        var lines = File.ReadAllLines(fileName);
 
         var numbers = new List<int>();
 
@@ -26,12 +26,16 @@ public static class Parts
             numbers.Add(n1!.Value * 10 + n2!.Value);
         }
 
-        Console.WriteLine("Day 1 Task 1 answer is: " + numbers.Sum());
+        var sum = numbers.Sum();
+        
+        Console.WriteLine("Day 1 Task 1 answer is: " + sum);
+
+        return sum;
     }
     
-    public static void Two()
+    public static int Two(string fileName = "Day1/input.txt")
     {
-        var lines = File.ReadAllLines("Day1/input.txt");
+        var lines = File.ReadAllLines(fileName);
 
         var numbers = new List<int>();
         string[] digits = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
@@ -81,7 +85,11 @@ public static class Parts
     
             numbers.Add(n1!.Value * 10 + n2!.Value);
         }
+
+        var sum = numbers.Sum();
         
-        Console.WriteLine("Day 1 Task 2 answer is: " + numbers.Sum());
+        Console.WriteLine("Day 1 Task 2 answer is: " + sum);
+
+        return sum;
     }
 }

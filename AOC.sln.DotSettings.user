@@ -1,9 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3293f9eb_002D6c93_002D4365_002D802c_002D9a3d5be67112/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Asd #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3293f9eb_002D6c93_002D4365_002D802c_002D9a3d5be67112/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Asd #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\hurto\source\repos\AOC\ConsoleApp.Tests" Presentation="&amp;lt;ConsoleApp.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e05e8356_002D2195_002D42f0_002Db2fc_002D7c83a2b0370f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Asd" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::CF7F6A8D-F442-4C73-B3A0-2835E5BAC847::net8.0::ConsoleApp.Tests.Day5.Asd&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e05e8356_002D2195_002D42f0_002Db2fc_002D7c83a2b0370f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Asd" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\hurto\source\repos\AOC\ConsoleApp.Tests" Presentation="&amp;lt;ConsoleApp.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

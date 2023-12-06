@@ -2,8 +2,20 @@ using ConsoleApp.Day3;
 
 namespace ConsoleApp.Tests.Day3;
 
-public class Day3
+public class Tests
 {
+    [Fact]
+    public void PartOne_Ok()
+    {
+        Parts.One("Day3/example.txt").Should().Be(4361);
+    }
+    
+    [Fact]
+    public void PartTwo_Ok()
+    {
+        Parts.Two("Day3/example.txt").Should().Be(467835);
+    }
+    
     [Theory]
     [InlineData(2, 4, 2, 0, 0, false)]
     [InlineData(2, 4, 2, 1, 0, false)]

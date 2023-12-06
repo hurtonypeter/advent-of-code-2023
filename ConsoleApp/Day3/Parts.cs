@@ -11,9 +11,9 @@ public static class Parts
         public readonly Dictionary<Coordinate, char> Symbols = new();
         public readonly Dictionary<HorizontalVector, int> Numbers = new();
 
-        public Matrix()
+        public Matrix(string fileName)
         {
-            var lines = File.ReadAllLines("Day3/input.txt");
+            var lines = File.ReadAllLines(fileName);
 
             for (var i = 0; i < lines.Length; i++)
             {
@@ -63,9 +63,9 @@ public static class Parts
         return coordinate.X >= vector.X1 - 1 && coordinate.X <= vector.X2 + 1;
     }
 
-    public static void One()
+    public static int One(string fileName = "Day3/input.txt")
     {
-        var matrix = new Matrix();
+        var matrix = new Matrix(fileName);
         var numbers = new List<int>();
 
         foreach (var number in matrix.Numbers)
@@ -76,12 +76,16 @@ public static class Parts
             }
         }
 
-        Console.WriteLine("Day 3 Task 1 answer is: " + numbers.Sum());
+        var sum = numbers.Sum();
+
+        Console.WriteLine("Day 3 Task 1 answer is: " + sum);
+
+        return sum;
     }
     
-    public static void Two()
+    public static int Two(string fileName = "Day3/input.txt")
     {
-        var matrix = new Matrix();
+        var matrix = new Matrix(fileName);
         var sum = 0;
 
         foreach (var stars in matrix.Symbols.Where(x => x.Value == '*'))
@@ -97,5 +101,7 @@ public static class Parts
         }
 
         Console.WriteLine("Day 3 Task 2 answer is: " + sum);
+
+        return sum;
     }
 }
