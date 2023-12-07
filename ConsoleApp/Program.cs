@@ -8,7 +8,9 @@
 //ConsoleApp.Day4.Parts.One();
 //ConsoleApp.Day4.Parts.Two();
 //ConsoleApp.Day5.Parts.One();
-ConsoleApp.Day5.Parts.Two();
+//ConsoleApp.Day5.Parts.Two();
 //ConsoleApp.Day5.Parts.TwoBruteForce();
 //ConsoleApp.Day6.Parts.One();
 //ConsoleApp.Day6.Parts.Two();
+ConsoleApp.Day7.Parts.One(); 
+ConsoleApp.Day7.Parts.Two();

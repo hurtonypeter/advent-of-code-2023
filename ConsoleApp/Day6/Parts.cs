@@ -29,7 +29,7 @@ public static class Parts
     private static Race ParseFileTwo(string fileName)
     {
         var lines = File.ReadAllLines(fileName);
-        
+
         var time = lines[0]
             .Split(':')[1]
             .Replace(" ", string.Empty);
@@ -80,10 +80,9 @@ public static class Parts
         var race = ParseFileTwo(fileName);
 
         var raceWinOptions = CalculateRaceWinOptions(race);
-        
-        Console.WriteLine("Day 6 Task 1 answer is: " + raceWinOptions);
+
+        Console.WriteLine("Day 6 Task 2 answer is: " + raceWinOptions);
 
         return raceWinOptions;
     }
-
 }
