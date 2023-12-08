@@ -55,7 +55,7 @@ public static partial class Parts
     {
         var total = CalculateTotalWinnings(fileName, new PartTwoHandParser());
 
-        Console.WriteLine("Day 7 Task 1 answer is: " + total);
+        Console.WriteLine("Day 7 Task 2 answer is: " + total);
 
         return total;
     }

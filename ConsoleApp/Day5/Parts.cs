@@ -140,7 +140,7 @@ public static class Parts
 
         timer.Stop();
         Console.WriteLine(
-            $@"Day 5 Task 1 answer is: {minTarget}, took {timer.Elapsed:m\:ss\.fff}");
+            $@"Day 5 Task 2 answer is: {minTarget}, took {timer.Elapsed:m\:ss\.fff}");
 
         return minTarget;
     }
