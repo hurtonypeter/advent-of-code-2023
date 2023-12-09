@@ -5,12 +5,6 @@ namespace ConsoleApp.Day5;
 public static class Parts
 {
     public record struct Range(long Start, long Length);
-
-    private static (long From, long To) ToInterval(Range range)
-    {
-        return (range.Start, range.Start + range.Length - 1);
-    }
-
     public record struct GardenMapEntry(Range Destination, Range Source);
 
     private static (List<long> Seeds, List<List<GardenMapEntry>> Maps) ParseInput(string fileName)
