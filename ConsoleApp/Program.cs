@@ -22,5 +22,9 @@
 // ConsoleApp.Day10.Parts.Two();
 // ConsoleApp.Day11.Parts.One(); 
 // ConsoleApp.Day11.Parts.Two();
-ConsoleApp.Day12.Parts.One(); 
-ConsoleApp.Day12.Parts.Two();
+// ConsoleApp.Day12.Parts.One(); 
+// ConsoleApp.Day12.Parts.Two();
+// ConsoleApp.Day13.Parts.One(); 
+// ConsoleApp.Day13.Parts.Two();
+ConsoleApp.Day14.Parts.One(); 
+ConsoleApp.Day14.Parts.Two();

@@ -20,12 +20,7 @@ public static class Parts
             return new Row(springs, checksums);
         }
     }
-    class Segment
-    {
-        public byte Counter { get; set; }
-        public bool Closed { get; set; }
-    }
-
+    
     public static int One(string fileName = "Day12/input.txt")
     {
         var rows = ParseInput(fileName);
