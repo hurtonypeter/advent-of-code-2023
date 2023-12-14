@@ -2,17 +2,22 @@
 
 public static class Parts
 {
-    private static IEnumerable<List<char>> ParseInput(string fileName)
+    private static List<List<char>> ParseInput(string fileName)
     {
         var lines = File.ReadAllLines(fileName);
         
-        var length = lines[0].Length;
-        var chars = lines.Select(x => x.ToCharArray()).ToList();
+        var chars = lines.Select(x => x.ToList()).ToList();
 
+        return chars;
+    }
+    
+    private static IEnumerable<List<char>> Rotate(List<List<char>> lines)
+    {
+        var length = lines[0].Count;
         for (var i = 0; i < length; i++)
         {
             var index = i;
-            yield return chars.Select(x => x[index]).ToList();
+            yield return lines.Select(x => x[index]).ToList();
         }
     }
     
@@ -33,11 +38,9 @@ public static class Parts
 
         return index;
     }
-
-    public static int One(string fileName = "Day14/input.txt")
+    
+    private static void Tilt(List<List<char>> cols)
     {
-        var cols = ParseInput(fileName).ToList();
-
         foreach (var col in cols)
         {
             for (var i = 1; i < col.Count; i++)
@@ -57,7 +60,10 @@ public static class Parts
                 col[i] = '.';
             }
         }
+    }
 
+    private static int SummarizeCols(List<List<char>> cols)
+    {
         var sum = 0;
         foreach (var col in cols)
         {
@@ -69,6 +75,19 @@ public static class Parts
                 }
             }
         }
+
+        return sum;
+    }
+
+    public static int One(string fileName = "Day14/input.txt")
+    {
+        var input = ParseInput(fileName);
+
+        var cols = Rotate(input).ToList();
+
+        Tilt(cols);
+
+        var sum = SummarizeCols(cols);
         
         Console.WriteLine("Day 14 Task 1 answer is: " + sum);
 
